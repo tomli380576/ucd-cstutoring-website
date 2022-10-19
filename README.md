@@ -11,9 +11,9 @@ Then clone the repository and in your working directory, run `npm install` to in
 Run `npm run dev` to start a local server and the app should be loaded at `localhost:3000` or whatever the cli says.
 
 ## Links
-Vite: https://vitejs.dev/guide/#scaffolding-your-first-vite-project
 
-MUI: https://mui.com/getting-started/installation/
+Vite: <https://vitejs.dev/guide/#scaffolding-your-first-vite-project>
 
-React: https://reactjs.org/tutorial/tutorial.html#function-components
+MUI: <https://mui.com/getting-started/installation/>
 
+React: <https://reactjs.org/tutorial/tutorial.html#function-components>
