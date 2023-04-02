@@ -11,7 +11,7 @@ function Home(): JSX.Element {
         sx={{
           backgroundImage: 'url(/home_background.png)',
           backgroundPosition: 'right',
-          backgroundSize: 'auto 110%;'
+          backgroundSize: 'cover'
         }}
       >
         <Stack alignItems="center">
@@ -22,7 +22,11 @@ function Home(): JSX.Element {
             A free, peer-run service for UC Davis students.
           </Typography>
 
-          <Button variant="contained" sx={{ p: 2, borderRadius: 5 }}>
+          <Button
+            variant="contained"
+            sx={{ p: 2, borderRadius: 5 }}
+            href="https://www.google.com/maps/"
+          >
             Join Our Discord Today!
           </Button>
         </Stack>
