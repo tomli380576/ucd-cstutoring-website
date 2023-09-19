@@ -1,10 +1,14 @@
 import { createTheme } from '@mui/material';
 
 const globalTheme = createTheme({
-  palette: {},
+  palette: {
+    primary: {
+      main: '#BD9F31',
+    }
+  },
   typography: {
     allVariants: {
-      fontFamily: "'Raleway', sans-serif"
+      fontFamily: "Intel, sans-serif"
     }
   }
 });
