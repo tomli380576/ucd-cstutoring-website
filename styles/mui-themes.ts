@@ -3,12 +3,16 @@ import { createTheme } from '@mui/material';
 const globalTheme = createTheme({
   palette: {
     primary: {
-      main: '#BD9F31',
+      main: '#BD9F31'
+    },
+    secondary: {
+      main: '#333333',
+      contrastText: 'white'
     }
   },
   typography: {
     allVariants: {
-      fontFamily: "Intel, sans-serif"
+      fontFamily: 'Inter, sans-serif'
     }
   }
 });
