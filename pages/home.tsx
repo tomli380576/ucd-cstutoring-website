@@ -1,16 +1,7 @@
-import { CS_DEPT_LINK, DISCORD_INVITE } from '@/utils/strings';
-import {
-  Stack,
-  Box,
-  Typography,
-  Button,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Icon,
-  Link
-} from '@mui/material';
-import NextLink from 'next/link';
+import Footer from '@/src/utils/components/footer';
+import NavBar from '@/src/utils/components/nav-bar';
+import { CS_DEPT_LINK, DISCORD_INVITE } from '@/src/utils/strings';
+import { Stack, Box, Typography, Button, Link } from '@mui/material';
 import { animated, useSpring } from '@react-spring/web';
 
 // not in the home component to avoid excessive object creation/destruction
@@ -24,45 +15,14 @@ const gradientStyle = {
   WebkitTextFillColor: 'transparent'
 };
 
-const AnimatedButton = animated(Button);
+const borderGradient = {
+  background: 'linear-gradient(-86deg, #FFDE28, #7AEC8D);',
+  WebkitBackgroundClip: 'text',
+  WebkitTextStroke: '4px transparent',
+  color: '#222222'
+};
 
-function Nav(): JSX.Element {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="secondary">
-        <Toolbar>
-          <IconButton size="large" edge="start" color="inherit">
-            <Icon>
-              <img
-                style={{ height: '100%', width: '100%' }}
-                src="/tutoring-logo.svg"
-              />
-            </Icon>
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            CS Tutoring - UC Davis
-          </Typography>
-          <Stack spacing={1} direction={'row'}>
-            <Button color="inherit">
-              <NextLink
-                href={'/'}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                Home
-              </NextLink>
-            </Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Become A Tutor</Button>
-            <Button color="inherit">Meet the Team!</Button>
-            <Button color="primary" variant="contained">
-              Tutor Login
-            </Button>
-          </Stack>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
-}
+const AnimatedButton = animated(Button);
 
 function Home(): JSX.Element {
   const spring = useSpring({
@@ -70,9 +30,9 @@ function Home(): JSX.Element {
     to: { y: 0 }
   });
   return (
-    <>
-      <Nav />
-      <Stack direction="column">
+    <Box sx={{ backgroundColor: '#1e1e1e' }}>
+      <NavBar />
+      <Stack direction="column" spacing={10}>
         {/**Section 1 */}
         <Box
           height="100vh"
@@ -81,26 +41,28 @@ function Home(): JSX.Element {
           display="flex"
           sx={{
             backgroundImage: 'url(/home_background.png)',
-            backgroundColor: '#222222',
             backgroundPosition: 'right',
             backgroundSize: 'cover'
           }}
         >
-          <Stack alignItems="center">
-            <Typography
-              variant="h1"
-              fontWeight={700}
-              color={'white'}
-              sx={gradientStyle}
-            >
-              CS Tutoring at UC Davis
-            </Typography>
-            <Typography variant="h3" color={'white'} mb={10} sx={gradientStyle}>
-              A free, peer-run service for UC Davis students.
-            </Typography>
+          <Stack alignItems="center" spacing={10}>
+            <Box>
+              <Typography
+                variant="h1"
+                fontWeight="bolder"
+                color={'white'}
+                lineHeight="normal"
+                sx={borderGradient}
+              >
+                CS Tutoring at UC Davis
+              </Typography>
+              <Typography variant="h3" color={'white'}>
+                A free, peer-run service for UC Davis students.
+              </Typography>
+            </Box>
             <AnimatedButton
-              variant="contained"
-              sx={{ p: 1.5 }}
+              variant="outlined"
+              sx={{ p: 1.5, fontSize: '1rem' }}
               style={spring}
               onClick={() => open(DISCORD_INVITE)}
             >
@@ -110,7 +72,6 @@ function Home(): JSX.Element {
         </Box>
 
         <Box
-          height="100vh"
           justifyContent="center"
           alignItems="center"
           display="flex"
@@ -156,7 +117,6 @@ function Home(): JSX.Element {
         </Box>
 
         <Box
-          height="100vh"
           justifyContent="center"
           alignItems="center"
           display="flex"
@@ -170,6 +130,7 @@ function Home(): JSX.Element {
             justifyContent={'center'}
             maxWidth={'60%'}
             spacing={2}
+            mb={10}
           >
             <Typography variant="h1" sx={gradientStyle} fontWeight={700}>
               Become a Tutor!
@@ -187,7 +148,8 @@ function Home(): JSX.Element {
           </Stack>
         </Box>
       </Stack>
-    </>
+      <Footer />
+    </Box>
   );
 }
 

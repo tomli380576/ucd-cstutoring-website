@@ -12,6 +12,9 @@ const globalTheme = createTheme({
     }
   },
   typography: {
+    body1: {
+      fontWeight: 'lighter'
+    },
     allVariants: {
       fontFamily: 'Inter, sans-serif'
     }
