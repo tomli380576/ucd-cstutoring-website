@@ -1,29 +1,18 @@
-import type { AppProps } from 'next/app';
-import { ThemeOptions, ThemeProvider } from '@mui/material/styles';
+import '../styles/globals.css';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../config/theme';
+import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
+import { CssBaseline } from '@mui/material';
 
-export const themeOptions: ThemeOptions = {
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: '#BD9F31'
-        },
-        secondary: {
-            main: '#f50057'
-        },
-        background: {
-            default: '#1e1e1e',
-            paper: '#1e1e1e'
-        }
-    },
-    typography: {
-        fontFamily: '"Inter", "Helvetica", "Arial", sans-serif'
-    }
-};
-
-export default function App({ Component, pageProps }: AppProps) {
+export default function App(props: AppProps) {
+    const { Component, pageProps } = props;
     return (
-        <ThemeProvider theme={themeOptions}>
-            <Component {...pageProps} />
-        </ThemeProvider>
+        <AppCacheProvider {...props}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </AppCacheProvider>
     );
 }
