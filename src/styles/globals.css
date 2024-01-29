@@ -1,1 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --brand-color: #bd9f31;
+}
+
+.linear-gradient-text {
+  background: -webkit-linear-gradient(var(--brand-color), #222);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

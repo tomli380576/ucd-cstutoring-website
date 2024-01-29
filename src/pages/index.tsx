@@ -10,8 +10,6 @@ import youtubeLogo from '@/public/youtube_logo.svg';
 export default function Home() {
   return (
     <>
-      <Navbar />
-
       <Box display="flex" justifyContent="space-around" marginTop="10%">
         <Box>
           <Typography textAlign="center" fontSize={70} fontWeight={500}>
@@ -21,6 +19,7 @@ export default function Home() {
             @ UC Davis
           </Typography>
           <Typography
+            className="linear-gradient-text"
             textAlign="center"
             marginTop="3rem"
             marginBottom="3rem"
@@ -42,6 +41,41 @@ export default function Home() {
           borderRadius={20}
           style={{ backgroundColor: '#464646' }}
         ></Box>
+      </Box>
+
+      <Box>
+        <Typography
+          className="linear-gradient-text"
+          fontSize={120}
+          fontWeight={500}
+          width="65%"
+          margin="0 auto"
+          textAlign="center"
+        >
+          Inclusive, Flexible, and Resourceful
+        </Typography>
+        <Box display="flex" justifyContent="center" gap="4rem">
+          <Box
+            width={462}
+            height={414}
+            borderRadius={20}
+            style={{ backgroundColor: '#464646' }}
+          ></Box>
+          <Box width="38%" display="flex" flexDirection="column" gap="2rem">
+            <Typography>
+              Welcome to CS Peer Tutoring! We are affiliated with the CS Department at UC
+              Davis. Every quarter, the CS Tutoring Committee organizes undergraduate
+              volunteer tutors to help students with undergraduate CS courses. All of our
+              tutors are approved by the department, and received high grades in the
+              courses they tutor. We offer our tutoring services throughout the academic
+              year (except the Summer).
+            </Typography>
+            <Typography>
+              CS tutoring is free for all students --- just join our Discord server.
+            </Typography>
+            <Typography>You can contact us at cstutoring@ucdavis.edu.</Typography>
+          </Box>
+        </Box>
       </Box>
     </>
   );

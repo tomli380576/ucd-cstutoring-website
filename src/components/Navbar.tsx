@@ -4,7 +4,7 @@ import logo from '@/public/tutoring-logo.svg';
 
 export default function Navbar() {
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar>
         <Box
           display="flex"
