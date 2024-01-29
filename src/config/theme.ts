@@ -1,10 +1,11 @@
 import { createTheme } from '@mui/material';
+import { BRAND_COLOR } from '../utils/constants';
 
 export const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#BD9F31'
+      main: BRAND_COLOR
     },
     secondary: {
       main: '#f50057'
