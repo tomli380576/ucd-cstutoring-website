@@ -15,17 +15,15 @@ export default function Navbar() {
         >
           <Box display="flex" gap="1rem" alignItems="center">
             <Image src={logo} alt="logo" width={50} height={50} />
-            <Typography fontSize={24} fontWeight={500}>
-              CS Tutoring - UC Davis
-            </Typography>
+            <Typography fontWeight={500}>CS Tutoring - UC Davis</Typography>
           </Box>
           <Box display="flex" gap="2rem" alignItems="center">
-            <Typography fontSize={24}>Home</Typography>
-            <Typography fontSize={24}>About</Typography>
-            <Typography fontSize={24}>Become a Tutor!</Typography>
-            <Typography fontSize={24}>Team</Typography>
+            <Typography>Home</Typography>
+            <Typography>About</Typography>
+            <Typography>Become a Tutor!</Typography>
+            <Typography>Team</Typography>
             <Button variant="contained">
-              <Typography fontSize={24}>Tutor Login</Typography>
+              <Typography>Tutor Login</Typography>
             </Button>
           </Box>
         </Box>
