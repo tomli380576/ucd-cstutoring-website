@@ -6,13 +6,13 @@ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
 import { CssBaseline } from '@mui/material';
 
 export default function App(props: AppProps) {
-    const { Component, pageProps } = props;
-    return (
-        <AppCacheProvider {...props}>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </AppCacheProvider>
-    );
+  const { Component, pageProps } = props;
+  return (
+    <AppCacheProvider {...props}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </AppCacheProvider>
+  );
 }
