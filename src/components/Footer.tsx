@@ -8,6 +8,7 @@ export default function Footer() {
     <Box
       display="flex"
       justifyContent="space-around"
+      marginTop="10%"
       style={{ backgroundColor: BRAND_COLOR }}
     >
       <Box>

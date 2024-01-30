@@ -38,30 +38,23 @@ export default function Home() {
         <Box
           width={462}
           height={414}
-          borderRadius={20}
+          borderRadius="20%"
           style={{ backgroundColor: '#464646' }}
         ></Box>
       </Box>
 
-      <Box>
-        <Typography
-          className="linear-gradient-text"
-          fontSize={120}
-          fontWeight={500}
-          width="65%"
-          margin="0 auto"
-          textAlign="center"
-        >
+      <Box width="65%" margin="0 auto">
+        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
           Inclusive, Flexible, and Resourceful
         </Typography>
         <Box display="flex" justifyContent="center" gap="4rem">
           <Box
             width={462}
             height={414}
-            borderRadius={20}
+            borderRadius="20%"
             style={{ backgroundColor: '#464646' }}
           ></Box>
-          <Box width="38%" display="flex" flexDirection="column" gap="2rem">
+          <Box width="50%" display="flex" flexDirection="column" gap="2rem">
             <Typography>
               Welcome to CS Peer Tutoring! We are affiliated with the CS Department at UC
               Davis. Every quarter, the CS Tutoring Committee organizes undergraduate
@@ -75,6 +68,102 @@ export default function Home() {
             </Typography>
             <Typography>You can contact us at cstutoring@ucdavis.edu.</Typography>
           </Box>
+        </Box>
+      </Box>
+
+      <Box width="65%" margin="0 auto">
+        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
+          Become a Tutor!
+        </Typography>
+        <Box display="flex" justifyContent="center" gap="4rem">
+          <Box width="50%" display="flex" flexDirection="column" gap="2rem">
+            <Typography>Apply to be a tutor for Spring 2024!</Typography>
+            <Typography>
+              If you're interested in helping your fellow students in Computer Science and
+              would like to hone your interpersonal skills, we urge you to apply! We are
+              flexible with schedule changes and would really appreciate your help!
+            </Typography>
+            <Typography>Click here to apply!</Typography>
+          </Box>
+          <Box
+            width={462}
+            height={414}
+            borderRadius="20%"
+            style={{ backgroundColor: '#464646' }}
+          ></Box>
+        </Box>
+      </Box>
+
+      <Box width="65%" margin="0 auto">
+        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
+          Board
+        </Typography>
+        <Typography fontSize={50}>Current Board</Typography>
+        <Box
+          display="grid"
+          gridTemplateColumns="repeat(4, 1fr)"
+          justifyItems="center"
+          rowGap="4rem"
+        >
+          {Array(4).fill(
+            <Box>
+              <Box
+                width={166}
+                height={166}
+                borderRadius="20%"
+                style={{ backgroundColor: '#d9d9d9' }}
+              ></Box>
+              <Typography fontSize={20} fontWeight={500}>
+                First + Last Name
+              </Typography>
+            </Box>
+          )}
+        </Box>
+        <Typography fontSize={50} marginTop="4rem">
+          Faculty Advisors
+        </Typography>
+        <Box
+          display="grid"
+          gridTemplateColumns="repeat(4, 1fr)"
+          justifyItems="center"
+          rowGap="4rem"
+        >
+          {Array(4).fill(
+            <Box>
+              <Box
+                width={166}
+                height={166}
+                borderRadius="20%"
+                style={{ backgroundColor: '#d9d9d9' }}
+              ></Box>
+              <Typography fontSize={20} fontWeight={500}>
+                First + Last Name
+              </Typography>
+            </Box>
+          )}
+        </Box>
+        <Typography fontSize={50} marginTop="4rem">
+          Past Board
+        </Typography>
+        <Box
+          display="grid"
+          gridTemplateColumns="repeat(4, 1fr)"
+          justifyItems="center"
+          rowGap="4rem"
+        >
+          {Array(8).fill(
+            <Box>
+              <Box
+                width={166}
+                height={166}
+                borderRadius="20%"
+                style={{ backgroundColor: '#d9d9d9' }}
+              ></Box>
+              <Typography fontSize={20} fontWeight={500}>
+                First + Last Name
+              </Typography>
+            </Box>
+          )}
         </Box>
       </Box>
     </>
