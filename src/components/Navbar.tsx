@@ -4,7 +4,7 @@ import logo from '@/public/tutoring-logo.svg';
 
 export default function Navbar() {
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" style={{ padding: '1rem' }}>
       <Toolbar>
         <Box
           display="flex"
@@ -22,8 +22,8 @@ export default function Navbar() {
             <Typography>About</Typography>
             <Typography>Become a Tutor!</Typography>
             <Typography>Team</Typography>
-            <Button variant="contained">
-              <Typography>Tutor Login</Typography>
+            <Button variant="contained" style={{ borderRadius: 20 }}>
+              <Typography color="white">Tutor Login</Typography>
             </Button>
           </Box>
         </Box>

@@ -10,7 +10,7 @@ import youtubeLogo from '@/public/youtube_logo.svg';
 export default function Home() {
   return (
     <>
-      <Box display="flex" justifyContent="space-around" marginTop="10%">
+      <Box display="flex" justifyContent="space-around" marginTop="10%" height="80vh">
         <Box>
           <Typography textAlign="center" fontSize={70} fontWeight={500}>
             CS Tutoring
@@ -44,7 +44,12 @@ export default function Home() {
       </Box>
 
       <Box width="65%" margin="0 auto">
-        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
+        <Typography
+          className="linear-gradient-text"
+          fontSize={120}
+          fontWeight={500}
+          marginBottom="4rem"
+        >
           Inclusive, Flexible, and Resourceful
         </Typography>
         <Box display="flex" justifyContent="center" gap="4rem">
@@ -71,11 +76,17 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box width="65%" margin="0 auto">
+      <Box width="65%" margin="4rem auto 0">
         <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
           Become a Tutor!
         </Typography>
-        <Box display="flex" justifyContent="center" gap="4rem">
+        <Box
+          display="flex"
+          justifyContent="center"
+          gap="4rem"
+          marginTop="4rem"
+          marginBottom="4rem"
+        >
           <Box width="50%" display="flex" flexDirection="column" gap="2rem">
             <Typography>Apply to be a tutor for Spring 2024!</Typography>
             <Typography>
@@ -94,11 +105,13 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box width="65%" margin="0 auto">
+      <Box width="65%" margin="4rem auto 0">
         <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
           Board
         </Typography>
-        <Typography fontSize={50}>Current Board</Typography>
+        <Typography fontSize={50} marginBottom="4rem">
+          Current Board
+        </Typography>
         <Box
           display="grid"
           gridTemplateColumns="repeat(4, 1fr)"
@@ -119,7 +132,7 @@ export default function Home() {
             </Box>
           )}
         </Box>
-        <Typography fontSize={50} marginTop="4rem">
+        <Typography fontSize={50} marginTop="4rem" marginBottom="4rem">
           Faculty Advisors
         </Typography>
         <Box
@@ -142,7 +155,7 @@ export default function Home() {
             </Box>
           )}
         </Box>
-        <Typography fontSize={50} marginTop="4rem">
+        <Typography fontSize={50} marginTop="4rem" marginBottom="4rem">
           Past Board
         </Typography>
         <Box

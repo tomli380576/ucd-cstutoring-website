@@ -9,9 +9,10 @@ export default function Footer() {
       display="flex"
       justifyContent="space-around"
       marginTop="10%"
+      padding="4rem 0"
       style={{ backgroundColor: BRAND_COLOR }}
     >
-      <Box>
+      <Box display="flex" flexDirection="column" gap="1rem">
         <Typography>Home</Typography>
         <Typography>About</Typography>
         <Typography>Become a Tutor!</Typography>
@@ -19,7 +20,7 @@ export default function Footer() {
         <Typography>Tutor Login</Typography>
       </Box>
 
-      <Box>
+      <Box display="flex" flexDirection="column" gap="1rem">
         <Typography>Discord</Typography>
         <Typography>LinkTree</Typography>
         <Typography>Calendar</Typography>
