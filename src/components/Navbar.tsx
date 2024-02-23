@@ -13,10 +13,13 @@ import Image from 'next/image';
 import logo from '@/public/tutoring-logo.svg';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const router = useRouter();
   const open = Boolean(anchorEl);
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,6 +28,11 @@ export default function Navbar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleMyAccount = () => {
+    handleClose();
+    router.push('/account');
   };
 
   const handleLogout = () => {
@@ -43,7 +51,9 @@ export default function Navbar() {
           width="100%"
         >
           <Box display="flex" gap="1rem" alignItems="center">
-            <Image src={logo} alt="logo" width={50} height={50} />
+            <Link href="/">
+              <Image src={logo} alt="logo" width={50} height={50} />
+            </Link>
             <Typography fontWeight={500}>CS Tutoring - UC Davis</Typography>
           </Box>
           <Box display="flex" gap="2rem" alignItems="center">
@@ -78,7 +88,7 @@ export default function Navbar() {
                     'aria-labelledby': 'basic-button'
                   }}
                 >
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={handleMyAccount}>My account</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </>
