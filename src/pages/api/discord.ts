@@ -1,7 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { auth } from '@/src/server/auth';
+import { API_VERSION } from '@/src/utils/constants';
+import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+/**
+ * Send request to Discord's API using OAuth token
+ * @param req
+ * @param res
+ * @returns
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await auth(req, res);
 
@@ -10,11 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const apiVersion = 10;
-  const guildId = '888516333761871882';
-
-  const initialDiscordRes = await fetch(
-    `https://discord.com/api/v${apiVersion}/users/@me/guilds/${guildId}/member`,
+  const response = await axios(
+    `https://discord.com/api/v${API_VERSION}/users/@me/guilds`,
     {
       method: 'GET',
       headers: {
@@ -24,9 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   );
 
-  const discordJson = await initialDiscordRes.json();
+  console.log(response.data);
 
-  console.log(discordJson);
-
-  res.status(200).json(discordJson);
+  res.status(200).json(response.data);
 }
