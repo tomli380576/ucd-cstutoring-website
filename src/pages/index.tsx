@@ -90,9 +90,10 @@ export default function Home() {
           <Box width="50%" display="flex" flexDirection="column" gap="2rem">
             <Typography>Apply to be a tutor for Spring 2024!</Typography>
             <Typography>
-              If you're interested in helping your fellow students in Computer Science and
-              would like to hone your interpersonal skills, we urge you to apply! We are
-              flexible with schedule changes and would really appreciate your help!
+              If you&apos;re interested in helping your fellow students in Computer
+              Science and would like to hone your interpersonal skills, we urge you to
+              apply! We are flexible with schedule changes and would really appreciate
+              your help!
             </Typography>
             <Typography>Click here to apply!</Typography>
           </Box>
