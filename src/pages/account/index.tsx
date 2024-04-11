@@ -1,9 +1,8 @@
+import AdminTable from '@/src/components/AdminTable';
 import { API_VERSION, GUILD_ID } from '@/src/utils/constants';
-import { db } from '@/src/utils/firebase';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 import { APIGuild, APIGuildMember } from 'discord-api-types/v10';
-import { collection, getDocs } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
@@ -49,15 +48,6 @@ export default function AccountPage() {
         );
 
         setDiscordInfo(response.data);
-        console.log('GETTING DOCS...');
-
-        await getDocs(collection(db, 'attendance')).then(snapshot => {
-          const attendanceEntries = [];
-          snapshot.docs.forEach(doc => {
-            attendanceEntries.push({ ...doc.data() });
-          });
-          console.log('ATTENDANCE ENTRIES: ', attendanceEntries);
-        });
       } catch (error) {
         console.log('An error occurred:', error);
       }
@@ -73,9 +63,12 @@ export default function AccountPage() {
     <>
       <Typography>My Account</Typography>
       {discordInfo ? (
-        <Typography>
-          {discordInfo.user?.username} is in CS Tutoring Club Server
-        </Typography>
+        <>
+          <Typography>
+            {discordInfo.user?.username} is in CS Tutoring Club Server
+          </Typography>
+          <AdminTable />
+        </>
       ) : (
         <Typography>User is not in CS Tutoring Club Server</Typography>
       )}
