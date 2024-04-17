@@ -1,4 +1,4 @@
-import AdminTable from '@/src/components/AdminTable';
+import AdminView from '@/src/components/admin/AdminView';
 import { API_VERSION, GUILD_ID } from '@/src/utils/constants';
 import { Typography } from '@mui/material';
 import axios from 'axios';
@@ -61,13 +61,12 @@ export default function AccountPage() {
 
   return (
     <>
-      <Typography>My Account</Typography>
       {discordInfo ? (
         <>
           <Typography>
             {discordInfo.user?.username} is in CS Tutoring Club Server
           </Typography>
-          <AdminTable />
+          <AdminView />
         </>
       ) : (
         <Typography>User is not in CS Tutoring Club Server</Typography>
