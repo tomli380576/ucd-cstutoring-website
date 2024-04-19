@@ -1,11 +1,28 @@
 import { Typography } from '@mui/material';
-import AdminTable from './AdminTable';
+import AttendanceTable from './AttendanceTable';
+import { useEffect, useState } from 'react';
+import { getDocs } from 'firebase/firestore';
+import { attendanceCol } from '@/src/utils/firebase';
 
 export default function AdminView() {
+  const [attendanceEntries, setAttendanceEntries] = useState<Attendance[]>([]);
+
+  useEffect(() => {
+    const getFirebaseData = async () => {
+      await getDocs(attendanceCol).then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          setAttendanceEntries(doc.data().entries);
+        });
+      });
+    };
+
+    getFirebaseData();
+  }, []);
+
   return (
     <>
       <Typography>Admin View</Typography>
-      <AdminTable />
+      <AttendanceTable entries={attendanceEntries} />
     </>
   );
 }

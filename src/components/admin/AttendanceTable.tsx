@@ -1,6 +1,3 @@
-import { getDocs } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { attendanceCol } from '@/src/utils/firebase';
 import {
   createColumnHelper,
   flexRender,
@@ -48,25 +45,16 @@ const columns = [
   })
 ];
 
-export default function AdminTable() {
-  const [attendanceEntries, setAttendanceEntries] = useState<Attendance[]>([]);
+type AttendanceTableProps = {
+  entries: Attendance[];
+};
+
+export default function AttendanceTable({ entries }: AttendanceTableProps) {
   const table = useReactTable({
     columns,
-    data: attendanceEntries,
+    data: entries,
     getCoreRowModel: getCoreRowModel()
   });
-
-  useEffect(() => {
-    const getFirebaseData = async () => {
-      await getDocs(attendanceCol).then(snapshot => {
-        snapshot.docs.forEach(doc => {
-          setAttendanceEntries(doc.data().entries);
-        });
-      });
-    };
-
-    getFirebaseData();
-  }, []);
 
   return (
     <div>

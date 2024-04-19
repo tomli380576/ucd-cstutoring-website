@@ -1,4 +1,4 @@
-import AdminView from '@/src/components/admin/AdminView';
+import UserView from '@/src/components/UserView';
 import { API_VERSION, GUILD_ID } from '@/src/utils/constants';
 import { Typography } from '@mui/material';
 import axios from 'axios';
@@ -46,12 +46,13 @@ export default function AccountPage() {
             }
           }
         );
-
+        console.log(response.data);
         setDiscordInfo(response.data);
       } catch (error) {
         console.log('An error occurred:', error);
       }
     };
+
     getDiscordInfo();
   }, [session]);
 
@@ -66,7 +67,7 @@ export default function AccountPage() {
           <Typography>
             {discordInfo.user?.username} is in CS Tutoring Club Server
           </Typography>
-          <AdminView />
+          <UserView roles={discordInfo.roles} userId={discordInfo.user?.id} />
         </>
       ) : (
         <Typography>User is not in CS Tutoring Club Server</Typography>
