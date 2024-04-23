@@ -22,7 +22,7 @@ const columns = [
     cell: info => {
       const date = new Date(info.getValue());
 
-      return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+      return `${date.toDateString()} - ${date.toLocaleTimeString()}`;
     }
   }),
   columnHelper.accessor('helpEndUnixMs', {
@@ -30,13 +30,16 @@ const columns = [
     cell: info => {
       const date = new Date(info.getValue());
 
-      return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+      return `${date.toDateString()} - ${date.toLocaleTimeString()}`;
     }
   }),
   columnHelper.accessor('helpedMembers', {
     header: () => 'Helped Members',
     cell: info => {
-      return info.getValue().map(member => <p key={member.id}>{member.displayName}</p>);
+      return info
+        .getValue()
+        .map(member => member.displayName)
+        .join(', ');
     }
   }),
   columnHelper.accessor('helper', {
@@ -57,46 +60,36 @@ export default function AttendanceTable({ entries }: AttendanceTableProps) {
   });
 
   return (
-    <div>
-      <table style={{ borderCollapse: 'collapse' }}>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id} style={{ border: '1px solid white', padding: 8 }}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          {table.getFooterGroups().map(footerGroup => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.footer, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
-      </table>
-    </div>
+    <table
+      style={{ borderCollapse: 'collapse', marginLeft: 'auto', marginRight: 'auto' }}
+    >
+      <thead>
+        {table.getHeaderGroups().map(headerGroup => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map(header => (
+              <th key={header.id} style={{ fontWeight: 600 }}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(header.column.columnDef.header, header.getContext())}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody>
+        {table.getRowModel().rows.map(row => (
+          <tr key={row.id}>
+            {row.getVisibleCells().map(cell => (
+              <td
+                key={cell.id}
+                style={{ border: '1px solid white', padding: 16, textAlign: 'center' }}
+              >
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

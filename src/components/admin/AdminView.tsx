@@ -21,7 +21,9 @@ export default function AdminView() {
 
   return (
     <>
-      <Typography>Admin View</Typography>
+      <Typography fontWeight="bold" fontSize="2rem" textAlign="center" marginBottom={1}>
+        Admin View
+      </Typography>
       <AttendanceTable entries={attendanceEntries} />
     </>
   );

@@ -1,6 +1,7 @@
+import RoleChip from '@/src/components/RoleChip';
 import UserView from '@/src/components/UserView';
-import { API_VERSION, GUILD_ID } from '@/src/utils/constants';
-import { Typography } from '@mui/material';
+import { API_VERSION, GUILD_ID, ROLES } from '@/src/utils/constants';
+import { Box, Typography } from '@mui/material';
 import axios from 'axios';
 import { APIGuild, APIGuildMember } from 'discord-api-types/v10';
 import { useSession } from 'next-auth/react';
@@ -46,6 +47,7 @@ export default function AccountPage() {
             }
           }
         );
+
         console.log(response.data);
         setDiscordInfo(response.data);
       } catch (error) {
@@ -61,17 +63,29 @@ export default function AccountPage() {
   }
 
   return (
-    <>
+    <Box padding={4}>
       {discordInfo ? (
         <>
-          <Typography>
-            {discordInfo.user?.username} is in CS Tutoring Club Server
+          <Typography marginBottom={2}>
+            <span style={{ fontWeight: 'bold' }}>Username:</span>{' '}
+            {discordInfo.user?.username}
           </Typography>
+          <Box display="flex" gap={2} marginBottom={6}>
+            {discordInfo.roles.map(roleId => {
+              if (!(roleId in ROLES)) {
+                return;
+              }
+
+              return (
+                <RoleChip key={roleId} label={ROLES[roleId as keyof typeof ROLES]} />
+              );
+            })}
+          </Box>
           <UserView roles={discordInfo.roles} userId={discordInfo.user?.id} />
         </>
       ) : (
-        <Typography>User is not in CS Tutoring Club Server</Typography>
+        <Typography>You are not in CS Tutoring Club Server.</Typography>
       )}
-    </>
+    </Box>
   );
 }

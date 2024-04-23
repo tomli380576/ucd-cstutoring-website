@@ -1,4 +1,4 @@
-import { ROLES } from '../utils/constants';
+import { getRoleId } from '../utils/utils';
 import AdminView from './admin/AdminView';
 import TutorView from './tutor/TutorView';
 
@@ -8,11 +8,11 @@ type UserViewProps = {
 };
 
 export default function UserView({ userId, roles }: UserViewProps) {
-  if (roles.includes(ROLES.botAdmin)) {
+  if (roles.includes(getRoleId('Bot Admin') ?? '')) {
     return <AdminView />;
   }
 
-  if (roles.includes(ROLES.tutor) && userId) {
+  if (roles.includes(getRoleId('Bot Admin') ?? '') && userId) {
     return <TutorView userId={userId} />;
   }
 
