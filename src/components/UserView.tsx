@@ -12,7 +12,7 @@ export default function UserView({ userId, roles }: UserViewProps) {
     return <AdminView />;
   }
 
-  if (roles.includes(getRoleId('Bot Admin') ?? '') && userId) {
+  if (roles.includes(getRoleId('Tutor') ?? '') && userId) {
     return <TutorView userId={userId} />;
   }
 
