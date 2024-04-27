@@ -1,5 +1,3 @@
-import { ROLES } from './constants';
-
 /** Type guard to determine if an entry is an `Attendance` entry or `HelpSession` */
 export function isAttendance(entry: Attendance | HelpSession): entry is Attendance {
   return (
@@ -34,12 +32,6 @@ export function millisecondsToMinutesSeconds(milliseconds: number): {
   const seconds: number = Math.floor(totalSeconds % 60);
 
   return { minutes, seconds };
-}
-
-/** Function to get the role ID by role name */
-export function getRoleId(roleName: (typeof ROLES)[keyof typeof ROLES]) {
-  const ids = Object.keys(ROLES) as (keyof typeof ROLES)[];
-  return ids.find(id => ROLES[id] === roleName);
 }
 
 /** Function to get the most recent Sunday */

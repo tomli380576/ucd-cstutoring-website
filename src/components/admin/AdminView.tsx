@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import { getDocs } from 'firebase/firestore';
 import { attendanceCol, helpSessionsCol } from '@/src/utils/firebase';
 import HelpSessionsTable from '../tables/HelpSessionsTable';
+import { useSelectedServer } from '@/src/utils/atom';
 
 export default function AdminView() {
+  const [selectedServer] = useSelectedServer();
   const [attendanceEntries, setAttendanceEntries] = useState<Attendance[]>([]);
   const [helpSessionEntries, setHelpSessionEntries] = useState<HelpSession[]>([]);
 
@@ -13,18 +15,22 @@ export default function AdminView() {
     const getFirebaseData = async () => {
       await getDocs(attendanceCol).then(snapshot => {
         snapshot.docs.forEach(doc => {
-          setAttendanceEntries(doc.data().entries);
+          if (doc.id === selectedServer?.id) {
+            setAttendanceEntries(doc.data().entries);
+          }
         });
       });
       await getDocs(helpSessionsCol).then(snapshot => {
         snapshot.docs.forEach(doc => {
-          setHelpSessionEntries(doc.data().entries);
+          if (doc.id === selectedServer?.id) {
+            setHelpSessionEntries(doc.data().entries);
+          }
         });
       });
     };
 
     getFirebaseData();
-  }, []);
+  }, [selectedServer]);
 
   return (
     <>

@@ -23,3 +23,37 @@ type HelpSession = {
 type HelpSessionEntries = {
   entries: HelpSession[];
 };
+
+type ServerBackup = {
+  afterSessionMessage: string;
+  autoGiveStudentRole: false;
+  botAdminRoleId: string;
+  hoursUntilAutoClear: string | { hours: number; minutes: number };
+  loggingChannelId: string;
+  promptHelpTopic: boolean;
+  queues: {
+    name: string;
+    parentCategoryId: string;
+    studentsInQueue: {
+      displayName: string;
+      memberId: string;
+      waitStart: Date;
+    };
+  }[];
+  seriousServer: false;
+  serverName: string;
+  staffRoleId: string;
+  studentRoleId: string;
+  timeStamp: Date;
+  timezone: {
+    hours: number;
+    minutes: 0 | 30 | 45;
+    sign: '+' | '-';
+  };
+  trackingEnabled: boolean;
+};
+
+type Server = {
+  id: string;
+  server: ServerBackup;
+};
