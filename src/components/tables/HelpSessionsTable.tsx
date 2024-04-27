@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-table';
 import { millisecondsToMinutesSeconds } from '../../utils/utils';
 import { Typography } from '@mui/material';
+import SessionStats from './SessionStats';
 
 const columnHelper = createColumnHelper<HelpSession>();
 
@@ -105,6 +106,7 @@ export default function HelpSessionsTable({ entries }: HelpSessionsTableProps) {
       >
         Help Sessions
       </Typography>
+      <SessionStats entries={entries} />
       <div style={{ overflowY: 'scroll', height: '32rem', padding: 4 }}>
         <table
           style={{

@@ -5,7 +5,8 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 import { millisecondsToMinutesSeconds } from '../../utils/utils';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import SessionStats from './SessionStats';
 
 const columnHelper = createColumnHelper<Attendance>();
 
@@ -98,6 +99,7 @@ export default function AttendanceTable({ entries }: AttendanceTableProps) {
       >
         Attendance
       </Typography>
+      <SessionStats entries={entries} />
       <div style={{ overflowY: 'scroll', height: '32rem', padding: 4 }}>
         <table
           style={{
