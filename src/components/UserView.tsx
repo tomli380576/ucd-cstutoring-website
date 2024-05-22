@@ -1,4 +1,4 @@
-import { getRoleId } from '../utils/utils';
+import { useSelectedServer } from '../utils/atom';
 import AdminView from './admin/AdminView';
 import TutorView from './tutor/TutorView';
 
@@ -8,11 +8,20 @@ type UserViewProps = {
 };
 
 export default function UserView({ userId, roles }: UserViewProps) {
-  if (roles.includes(getRoleId('Bot Admin') ?? '')) {
+  const [selectedServer] = useSelectedServer();
+
+  if (
+    selectedServer?.server.botAdminRoleId &&
+    roles.includes(selectedServer.server.botAdminRoleId)
+  ) {
     return <AdminView />;
   }
 
-  if (roles.includes(getRoleId('Bot Admin') ?? '') && userId) {
+  if (
+    selectedServer?.server.staffRoleId &&
+    roles.includes(selectedServer.server.staffRoleId) &&
+    userId
+  ) {
     return <TutorView userId={userId} />;
   }
 

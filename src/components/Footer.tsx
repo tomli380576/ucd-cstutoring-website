@@ -1,7 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { BRAND_COLOR } from '../utils/constants';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function Footer() {
+  const { data: session } = useSession();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,18 +16,44 @@ export default function Footer() {
       style={{ backgroundColor: BRAND_COLOR }}
     >
       <Box display="flex" flexDirection="column" gap="1rem">
-        <Typography>Home</Typography>
-        <Typography>About</Typography>
-        <Typography>Become a Tutor!</Typography>
-        <Typography>Team</Typography>
-        <Typography>Tutor Login</Typography>
+        <Link
+          href="https://forms.gle/xxwsm6TJSZ7zgntx9"
+          style={{ textDecoration: 'none', color: 'white' }}
+        >
+          <Typography>Become a Tutor!</Typography>
+        </Link>
+        {!session && <Typography>Tutor Login</Typography>}
       </Box>
 
       <Box display="flex" flexDirection="column" gap="1rem">
-        <Typography>Discord</Typography>
-        <Typography>LinkTree</Typography>
-        <Typography>Calendar</Typography>
-        <Typography>YouTube</Typography>
+        <Link
+          href="https://discord.com/invite/HXfwHbYF7f"
+          target="_blank"
+          style={{ textDecoration: 'none', color: 'white' }}
+        >
+          <Typography>Discord</Typography>
+        </Link>
+        <Link
+          href="https://linktr.ee/cstutoringatucd"
+          target="_blank"
+          style={{ textDecoration: 'none', color: 'white' }}
+        >
+          <Typography>LinkTree</Typography>
+        </Link>
+        <Link
+          href="https://sites.google.com/view/cs-tutoring-ucd/tutoring-calendar?authuser=0"
+          target="_blank"
+          style={{ textDecoration: 'none', color: 'white' }}
+        >
+          <Typography>Calendar</Typography>
+        </Link>
+        <Link
+          href="https://www.youtube.com/@cstutoringatucd/featured"
+          target="_blank"
+          style={{ textDecoration: 'none', color: 'white' }}
+        >
+          <Typography>YouTube</Typography>
+        </Link>
       </Box>
 
       <Box

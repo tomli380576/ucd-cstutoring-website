@@ -57,10 +57,12 @@ export default function Navbar() {
             <Typography fontWeight={500}>CS Tutoring - UC Davis</Typography>
           </Box>
           <Box display="flex" gap="2rem" alignItems="center">
-            <Typography>Home</Typography>
-            <Typography>About</Typography>
-            <Typography>Become a Tutor!</Typography>
-            <Typography>Team</Typography>
+            <Link
+              href="https://forms.gle/xxwsm6TJSZ7zgntx9"
+              style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold' }}
+            >
+              <Typography>Become a Tutor!</Typography>
+            </Link>
             {!session ? (
               <Button
                 variant="contained"

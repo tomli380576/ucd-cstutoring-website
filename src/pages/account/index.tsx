@@ -1,6 +1,8 @@
 import RoleChip from '@/src/components/RoleChip';
+import ServerSelect from '@/src/components/ServerSelect';
 import UserView from '@/src/components/UserView';
-import { API_VERSION, GUILD_ID, ROLES } from '@/src/utils/constants';
+import { useSelectedServer } from '@/src/utils/atom';
+import { API_VERSION } from '@/src/utils/constants';
 import { Box, Typography } from '@mui/material';
 import axios from 'axios';
 import { APIGuild, APIGuildMember } from 'discord-api-types/v10';
@@ -9,36 +11,19 @@ import { useEffect, useState } from 'react';
 
 export default function AccountPage() {
   const { data: session, status } = useSession();
-  const [discordInfo, setDiscordInfo] = useState<APIGuildMember | null>(null);
+  const [selectedServer] = useSelectedServer();
+  const [discordInfo, setDiscordInfo] = useState<APIGuildMember>();
 
   useEffect(() => {
     const getDiscordInfo = async () => {
       if (!session) {
+        setDiscordInfo(undefined);
         return;
       }
 
-      let response;
-
       try {
-        response = await axios<APIGuild[]>(
-          `https://discord.com/api/v${API_VERSION}/users/@me/guilds`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${session.accessToken}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-
-        // User not in guild
-        if (response.data.filter(guild => guild.id === GUILD_ID).length == 0) {
-          console.log('NOT IN SERVER');
-          return;
-        }
-
-        response = await axios<APIGuildMember>(
-          `https://discord.com/api/v${API_VERSION}/users/@me/guilds/${GUILD_ID}/member`,
+        const response = await axios<APIGuildMember>(
+          `https://discord.com/api/v${API_VERSION}/users/@me/guilds/${selectedServer?.id}/member`,
           {
             method: 'GET',
             headers: {
@@ -51,12 +36,13 @@ export default function AccountPage() {
         console.log(response.data);
         setDiscordInfo(response.data);
       } catch (error) {
+        setDiscordInfo(undefined);
         console.log('An error occurred:', error);
       }
     };
 
     getDiscordInfo();
-  }, [session]);
+  }, [session, selectedServer]);
 
   if (status !== 'authenticated') {
     return <></>;
@@ -64,6 +50,7 @@ export default function AccountPage() {
 
   return (
     <Box padding={4}>
+      <ServerSelect />
       {discordInfo ? (
         <>
           <Typography marginBottom={2}>
@@ -72,19 +59,23 @@ export default function AccountPage() {
           </Typography>
           <Box display="flex" gap={2} marginBottom={6}>
             {discordInfo.roles.map(roleId => {
-              if (!(roleId in ROLES)) {
+              const roles = [
+                selectedServer?.server.botAdminRoleId,
+                selectedServer?.server.staffRoleId,
+                selectedServer?.server.studentRoleId
+              ];
+
+              if (!roles.includes(roleId)) {
                 return;
               }
 
-              return (
-                <RoleChip key={roleId} label={ROLES[roleId as keyof typeof ROLES]} />
-              );
+              return <RoleChip key={roleId} roleId={roleId} />;
             })}
           </Box>
           <UserView roles={discordInfo.roles} userId={discordInfo.user?.id} />
         </>
       ) : (
-        <Typography>You are not in CS Tutoring Club Server.</Typography>
+        <Typography>You are not in {selectedServer?.server.serverName}.</Typography>
       )}
     </Box>
   );

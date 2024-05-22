@@ -32,3 +32,4 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 
 export const attendanceCol = createCollection<AttendanceEntries>('attendance');
 export const helpSessionsCol = createCollection<HelpSessionEntries>('helpSessions');
+export const serverBackupsCol = createCollection<ServerBackup>('serverBackups');

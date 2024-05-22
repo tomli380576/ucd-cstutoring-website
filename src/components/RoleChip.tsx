@@ -1,10 +1,26 @@
 import { Box, Typography } from '@mui/material';
+import { useSelectedServer } from '../utils/atom';
+import { useMemo } from 'react';
 
 type RoleChipProps = {
-  label: string;
+  roleId: string;
 };
 
-export default function RoleChip({ label }: RoleChipProps) {
+export default function RoleChip({ roleId }: RoleChipProps) {
+  const [selectedServer] = useSelectedServer();
+
+  const roleName = useMemo(() => {
+    if (roleId === selectedServer?.server.botAdminRoleId) {
+      return 'Bot Admin';
+    } else if (roleId === selectedServer?.server.staffRoleId) {
+      return 'Tutor';
+    } else if (roleId === selectedServer?.server.studentRoleId) {
+      return 'Student';
+    }
+
+    return '';
+  }, [roleId, selectedServer]);
+
   return (
     <Box
       bgcolor="#464646"
@@ -14,7 +30,7 @@ export default function RoleChip({ label }: RoleChipProps) {
       paddingTop={1}
       paddingBottom={1}
     >
-      <Typography fontSize="1rem">{label}</Typography>
+      <Typography fontSize="1rem">{roleName}</Typography>
     </Box>
   );
 }

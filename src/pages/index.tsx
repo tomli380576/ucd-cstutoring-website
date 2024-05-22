@@ -6,41 +6,44 @@ import discordLogo from '@/public/discord_logo.svg';
 import linktreeLogo from '@/public/linktree_logo.svg';
 import calendar from '@/public/calendar.svg';
 import youtubeLogo from '@/public/youtube_logo.svg';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
-      <Box display="flex" justifyContent="space-around" marginTop="10%" height="80vh">
-        <Box>
-          <Typography textAlign="center" fontSize={70} fontWeight={500}>
-            CS Tutoring
-          </Typography>
-          <Typography textAlign="center" fontSize={40}>
-            @ UC Davis
-          </Typography>
-          <Typography
-            className="linear-gradient-text"
-            textAlign="center"
-            marginTop="3rem"
-            marginBottom="3rem"
-            style={{ color: BRAND_COLOR }}
-          >
-            A free, peer-run service for UC Davis students.
-          </Typography>
-          <Box display="flex" justifyContent="space-around">
+      <Box marginTop="10%" height="80vh">
+        <Typography textAlign="center" fontSize={70} fontWeight={500}>
+          CS Tutoring
+        </Typography>
+        <Typography textAlign="center" fontSize={40}>
+          @ UC Davis
+        </Typography>
+        <Typography
+          className="linear-gradient-text"
+          textAlign="center"
+          marginTop="3rem"
+          marginBottom="3rem"
+          style={{ color: BRAND_COLOR }}
+        >
+          A free, peer-run service for UC Davis students.
+        </Typography>
+        <Box display="flex" justifyContent="center" gap={16}>
+          <Link href="https://discord.com/invite/HXfwHbYF7f" target="_blank">
             <Image src={discordLogo} alt="Discord" />
+          </Link>
+          <Link href="https://linktr.ee/cstutoringatucd" target="_blank">
             <Image src={linktreeLogo} alt="Linktree" />
+          </Link>
+          <Link
+            href="https://sites.google.com/view/cs-tutoring-ucd/tutoring-calendar?authuser=0"
+            target="_blank"
+          >
             <Image src={calendar} alt="Calendar" />
+          </Link>
+          <Link href="https://www.youtube.com/@cstutoringatucd/featured" target="_blank">
             <Image src={youtubeLogo} alt="Youtube" />
-          </Box>
+          </Link>
         </Box>
-
-        <Box
-          width={462}
-          height={414}
-          borderRadius="20%"
-          style={{ backgroundColor: '#464646' }}
-        ></Box>
       </Box>
 
       <Box width="65%" margin="0 auto">
@@ -49,35 +52,51 @@ export default function Home() {
           fontSize={120}
           fontWeight={500}
           marginBottom="4rem"
+          textAlign="center"
         >
           Inclusive, Flexible, and Resourceful
         </Typography>
-        <Box display="flex" justifyContent="center" gap="4rem">
-          <Box
-            width={462}
-            height={414}
-            borderRadius="20%"
-            style={{ backgroundColor: '#464646' }}
-          ></Box>
-          <Box width="50%" display="flex" flexDirection="column" gap="2rem">
-            <Typography>
-              Welcome to CS Peer Tutoring! We are affiliated with the CS Department at UC
-              Davis. Every quarter, the CS Tutoring Committee organizes undergraduate
-              volunteer tutors to help students with undergraduate CS courses. All of our
-              tutors are approved by the department, and received high grades in the
-              courses they tutor. We offer our tutoring services throughout the academic
-              year (except the Summer).
-            </Typography>
-            <Typography>
-              CS tutoring is free for all students --- just join our Discord server.
-            </Typography>
-            <Typography>You can contact us at cstutoring@ucdavis.edu.</Typography>
-          </Box>
+        <Box display="flex" flexDirection="column" gap="2rem" margin="0 auto">
+          <Typography>
+            Welcome to CS Peer Tutoring! We are affiliated with the CS Department at UC
+            Davis. Every quarter, the CS Tutoring Committee organizes undergraduate
+            volunteer tutors to help students with undergraduate CS courses. All of our
+            tutors are approved by the department, and received high grades in the courses
+            they tutor. We offer our tutoring services throughout the academic year
+            (except the Summer).
+          </Typography>
+          <Typography>
+            CS tutoring is free for all students --- just join our{' '}
+            <Link
+              href="https://discord.com/invite/HXfwHbYF7f"
+              target="_blank"
+              style={{ color: 'white', fontWeight: 'bold' }}
+            >
+              Discord server
+            </Link>
+            .
+          </Typography>
+          <Typography>
+            You can contact us at{' '}
+            <Link
+              href="mailto:cstutoring@ucdavis.edu"
+              target="_blank"
+              style={{ color: 'white', fontWeight: 'bold' }}
+            >
+              cstutoring@ucdavis.edu
+            </Link>
+            .
+          </Typography>
         </Box>
       </Box>
 
-      <Box width="65%" margin="4rem auto 0">
-        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
+      <Box width="65%" margin="0 auto">
+        <Typography
+          className="linear-gradient-text"
+          fontSize={120}
+          fontWeight={500}
+          textAlign="center"
+        >
           Become a Tutor!
         </Typography>
         <Box
@@ -87,7 +106,7 @@ export default function Home() {
           marginTop="4rem"
           marginBottom="4rem"
         >
-          <Box width="50%" display="flex" flexDirection="column" gap="2rem">
+          <Box display="flex" flexDirection="column" gap="2rem">
             <Typography>Apply to be a tutor for Spring 2024!</Typography>
             <Typography>
               If you&apos;re interested in helping your fellow students in Computer
@@ -97,87 +116,6 @@ export default function Home() {
             </Typography>
             <Typography>Click here to apply!</Typography>
           </Box>
-          <Box
-            width={462}
-            height={414}
-            borderRadius="20%"
-            style={{ backgroundColor: '#464646' }}
-          ></Box>
-        </Box>
-      </Box>
-
-      <Box width="65%" margin="4rem auto 0">
-        <Typography className="linear-gradient-text" fontSize={120} fontWeight={500}>
-          Board
-        </Typography>
-        <Typography fontSize={50} marginBottom="4rem">
-          Current Board
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(4, 1fr)"
-          justifyItems="center"
-          rowGap="4rem"
-        >
-          {Array(4).fill(
-            <Box>
-              <Box
-                width={166}
-                height={166}
-                borderRadius="20%"
-                style={{ backgroundColor: '#d9d9d9' }}
-              ></Box>
-              <Typography fontSize={20} fontWeight={500}>
-                First + Last Name
-              </Typography>
-            </Box>
-          )}
-        </Box>
-        <Typography fontSize={50} marginTop="4rem" marginBottom="4rem">
-          Faculty Advisors
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(4, 1fr)"
-          justifyItems="center"
-          rowGap="4rem"
-        >
-          {Array(4).fill(
-            <Box>
-              <Box
-                width={166}
-                height={166}
-                borderRadius="20%"
-                style={{ backgroundColor: '#d9d9d9' }}
-              ></Box>
-              <Typography fontSize={20} fontWeight={500}>
-                First + Last Name
-              </Typography>
-            </Box>
-          )}
-        </Box>
-        <Typography fontSize={50} marginTop="4rem" marginBottom="4rem">
-          Past Board
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(4, 1fr)"
-          justifyItems="center"
-          rowGap="4rem"
-        >
-          {Array(8).fill(
-            <Box>
-              <Box
-                width={166}
-                height={166}
-                borderRadius="20%"
-                style={{ backgroundColor: '#d9d9d9' }}
-              ></Box>
-              <Typography fontSize={20} fontWeight={500}>
-                First + Last Name
-              </Typography>
-            </Box>
-          )}
         </Box>
       </Box>
     </>
