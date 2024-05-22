@@ -29,19 +29,17 @@ export default function SessionStats({ entries }: SessionStatsProps) {
     [entries]
   );
 
-  const allSessionTime = useMemo(
-    () =>
-      millisecondsToMinutesSeconds(
-        entries.reduce((acc, cur) => {
-          if (isAttendance(cur)) {
-            return acc + (cur.helpEndUnixMs - cur.helpStartUnixMs);
-          }
-
-          return acc + (cur.sessionEndUnixMs - cur.sessionStartUnixMs);
-        }, 0)
-      ),
-    [entries]
-  );
+  const allSessionTime = useMemo(() => {
+    let time = 0;
+    for (const entry of entries) {
+      if (isAttendance(entry)) {
+        time += entry.helpEndUnixMs - entry.helpStartUnixMs;
+      } else {
+        time += entry.sessionEndUnixMs - entry.sessionStartUnixMs;
+      }
+    }
+    return millisecondsToMinutesSeconds(time);
+  }, [entries]);
 
   return (
     <Box display="flex" justifyContent="center" gap={8}>
